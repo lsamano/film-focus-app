@@ -17,9 +17,22 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const userLogin = this.state
-    this.props.doTheLoginThing(userLogin)
-    console.log("Hoi", this.state);
+    console.log("Now starting the fetch...");
+
+    fetch("http://localhost:3000/api/v1/login", {
+    method: "POST",
+    body: JSON.stringify({user: this.state}),
+    headers: {
+      "content-type": "application/json",
+      accepts: "application/json"
+      }
+    })
+    .then(resp => resp.json())
+    .then(data => {
+      console.log("Hey, the fetch worked?", data)
+      localStorage.setItem("token", data.jwt)
+      this.props.doTheLoginThing(data.user)
+    })
   }
 
   render() {
