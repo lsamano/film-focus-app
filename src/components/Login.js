@@ -1,4 +1,6 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {doTheLoginThing} from '../redux/actions'
 import { Button, Checkbox, Form } from 'semantic-ui-react';
 
 class Login extends Component {
@@ -15,7 +17,8 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    // this.props.addTodo(this.state)
+    const userLogin = this.state
+    this.props.doTheLoginThing(userLogin)
     console.log("Hoi", this.state);
   }
 
@@ -51,4 +54,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect(null, { doTheLoginThing })(Login);

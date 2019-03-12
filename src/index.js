@@ -6,10 +6,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router} from 'react-router-dom';
 import { createStore } from 'redux';
-import firstReducer from './reducers/firstReducer.js';
+import firstReducer from './redux/firstReducer.js';
 import { Provider } from 'react-redux';
 
-const store = createStore(firstReducer);
+const store = createStore(firstReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
   <Router>
